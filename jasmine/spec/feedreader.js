@@ -37,7 +37,7 @@ $(function() {
                 expect(feed.url).toBeDefined();
                 expect(feed.url).toEqual(jasmine.any(String));
                 expect(feed.url.length).toBeGreaterThan(0);
-                expect(isURL(feed.url)).toBe(true);
+                expect(isURL(feed.url)).toEqual(true);
             })
         });
 
@@ -78,9 +78,9 @@ $(function() {
             var menuIcon = $('.menu-icon-link');
             var body = $('body');
             menuIcon.click();
-            expect(body.hasClass('menu-hidden')).toBe(false);
+            expect(body.hasClass('menu-hidden')).toEqual(false);
             menuIcon.click();
-            expect(body.hasClass('menu-hidden')).toBe(true);
+            expect(body.hasClass('menu-hidden')).toEqual(true);
         });
     });
 
@@ -127,7 +127,7 @@ $(function() {
 
          it('should change the feed content', function(done) {
              var contentFeed1 = $('.feed').html();
-             expect(contentFeed1).not.toBe(contentFeed0);
+             expect(contentFeed1).not.toEqual(contentFeed0);
              done();
          });
     });
