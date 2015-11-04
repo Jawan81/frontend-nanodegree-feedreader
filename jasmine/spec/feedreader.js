@@ -26,7 +26,6 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-
         /*
          * This test loops through each feed
          * in the allFeeds object and ensures it has a URL defined
@@ -40,9 +39,8 @@ $(function() {
                 expect(feed.url.length).toBeGreaterThan(0);
                 // additionally check if it's a correct
                 expect(isURL(feed.url)).toEqual(true);
-            })
+            });
         });
-
 
         /* This test loops through each feed
          * in the allFeeds object and ensures it has a name defined
@@ -54,7 +52,7 @@ $(function() {
                 expect(feed.name).toBeDefined();
                 expect(feed.name).toEqual(jasmine.any(String));
                 expect(feed.name.length).toBeGreaterThan(0);
-            })
+            });
         });
     });
 
@@ -146,5 +144,75 @@ $(function() {
      * ADDITIONAL TESTS
      */
 
+    /*
+     * This suite tests for loading feeds from an external API instead
+     * of using the static allFeeds variable.
+     *
+     * NOTE: As long the allFeeds variable is loaded statically these tests might contradict other
+     * test suites in this file.
+     */
+    describe('RSS Feed API', function() {
+        /*
+         * Check the allFeeds variable is empty after loading.
+         */
+        it('allFeeds are defined and empty', function() {
+            expect(allFeeds).toBeDefined();
+            expect(allFeeds.length).toBe(0);
+        });
+
+        /*
+         * Check that an API endpoint is defined.
+         */
+        it('feed API endpoint is defined', function() {
+            expect(feedApiEndpoinnt).toBeDefined();
+            expect(isURL(feedApiEndpoinnt)).toEqual(true);
+        });
+
+
+        beforeEach(function(done) {
+            loadAllFeeds(function() {
+                done();
+            })
+        });
+
+        it('should load allTests from an API', function(done) {
+            expect(allFeeds.length).toBeGreaterThan(0);
+            done();
+        });
+
+
+        /*
+         * This test loops through each feed
+         * in the allFeeds object and ensures it has a URL defined
+         * and that the URL is not empty.
+         */
+        it('should be ensured that all feeds have a URL', function(done) {
+            allFeeds.forEach(function(feed) {
+                expect(feed).toBeDefined();
+                expect(feed.url).toBeDefined();
+                expect(feed.url).toEqual(jasmine.any(String));
+                expect(feed.url.length).toBeGreaterThan(0);
+                // additionally check if it's a correct
+                expect(isURL(feed.url)).toEqual(true);
+            });
+
+            done();
+        });
+
+
+        /* This test loops through each feed
+         * in the allFeeds object and ensures it has a name defined
+         * and that the name is not empty.
+         */
+        it('should be ensured that all feeds have a name', function(done) {
+            allFeeds.forEach(function(feed) {
+                expect(feed).toBeDefined();
+                expect(feed.name).toBeDefined();
+                expect(feed.name).toEqual(jasmine.any(String));
+                expect(feed.name.length).toBeGreaterThan(0);
+            });
+            done();
+        });
+    });
 
 }());
