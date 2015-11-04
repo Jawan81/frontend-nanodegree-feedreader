@@ -58,7 +58,6 @@ $(function() {
         });
     });
 
-
     /*
      * Tests the menu.
      */
@@ -141,5 +140,11 @@ $(function() {
              done();
          });
     });
+
+
+    /**
+     * ADDITIONAL TESTS
+     */
+
 
 }());
