@@ -30,4 +30,4 @@ All tests are found in `jasmine/spec/feedreader.js`.
 Apart from the tests required as a minimum for successful project submission additional tests were implemented
 that test for future features that are not implemented yet, meaning they fail intentionally.
 
-
+For example test suite was created to test a possible API fetch of different RSS feeds instead of having them hard-coded. Multiple test are included into the suite that test the asynchronous fetching of the feeds and the pre- and post-conditions.
